@@ -2,7 +2,7 @@ pipeline {
   agent { label 'JenAgent' }
   tools {
     jdk 'Java17'
-    maven 'Maven'
+    maven 'Maven3'
   }
   stages{
      stage("Cleanup Workspace"){
@@ -13,6 +13,7 @@ pipeline {
        steps {
          git branch: 'main', credentialsId: 'devopsgithub', url: 'https://github.com/Shivproutist/register-app'
        }
+     }
      stage("Build Application"){
        steps {
          sh "mvn clean package"
@@ -24,7 +25,5 @@ pipeline {
         }
       } 
     }  
-  }
-
   }
 }
