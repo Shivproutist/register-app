@@ -3,12 +3,13 @@ pipeline {
   tools {
     jdk 'Java17'
     maven 'Maven3'
-  }
-  stages{
+         }
+  stages {
      stage("Cleanup Workspace"){
        steps {
          cleanWs()
-       }
+              }
+        }
      stage("Checkout from SCM"){
        steps {
          git branch: 'main', credentialsId: 'devopsgithub', url: 'https://github.com/Shivproutist/register-app'
@@ -19,11 +20,10 @@ pipeline {
          sh "mvn clean package"
        }
       }
-      stage("Test Application"){
+     stage("Test Application"){
         steps {
            sh "mvn test"     
         }
       } 
     }  
   }
-}
