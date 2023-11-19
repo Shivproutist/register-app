@@ -4,9 +4,9 @@ pipeline {
     jdk 'Java17'
     maven 'Maven'
   }
-  stages {
+  stages{
      stage("Cleanup Workspace"){
-       steps{
+       steps {
          cleanWs()
        }
      stage("Checkout from SCM"){
