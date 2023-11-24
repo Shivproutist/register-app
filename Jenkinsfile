@@ -77,5 +77,12 @@ pipeline {
         }
       }
     }
-    }  
+    stage("Trigger CD pipeline"){
+      steps {
+        script {
+          sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://ec2-3-93-11-61.compute-1.amazonaws.com:8080/job/gitopscd2/buildWithParameters?token=gitops-token'"
+        }
+      }
+    }
+   }  
   }
